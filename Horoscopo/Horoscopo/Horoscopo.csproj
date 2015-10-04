@@ -143,6 +143,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\BadgeLogo.png" />
+    <Content Include="Assets\Icon\0.png" />
+    <Content Include="Assets\Icon\1.png" />
+    <Content Include="Assets\Icon\10.png" />
+    <Content Include="Assets\Icon\11.png" />
+    <Content Include="Assets\Icon\2.png" />
+    <Content Include="Assets\Icon\3.png" />
+    <Content Include="Assets\Icon\4.png" />
+    <Content Include="Assets\Icon\5.png" />
+    <Content Include="Assets\Icon\6.png" />
+    <Content Include="Assets\Icon\7.png" />
+    <Content Include="Assets\Icon\8.png" />
+    <Content Include="Assets\Icon\9.png" />
     <Content Include="Assets\Icon\icone.png" />
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\SplashScreen.png" />
