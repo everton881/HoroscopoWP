@@ -67,6 +67,15 @@ namespace Horoscopo
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            using (var bd = new HoroscopoContext())
+            {
+                if (!bd.DatabaseExists())
+                {
+                    bd.CreateDatabase();
+                }
+
+            }
+
         }
 
         // Code to execute when the application is activated (brought to foreground)

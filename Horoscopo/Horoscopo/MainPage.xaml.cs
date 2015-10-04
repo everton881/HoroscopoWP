@@ -16,26 +16,70 @@ namespace Horoscopo
         // Constructor
         public MainPage()
         {
+            ConsumindoJson consumir = new ConsumindoJson(listaHoroscopo);
             InitializeComponent();
-
-            // Sample code to localize the ApplicationBar
-            //BuildLocalizedApplicationBar();
+            // salvarHoroscopo();
+            CarregarHoroscopo();
+            consumir.conectar();
         }
 
-        // Sample code for building a localized ApplicationBar
-        //private void BuildLocalizedApplicationBar()
-        //{
-        //    // Set the page's ApplicationBar to a new instance of ApplicationBar.
-        //    ApplicationBar = new ApplicationBar();
 
-        //    // Create a new button and set the text value to the localized string from AppResources.
-        //    ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.rest.png", UriKind.Relative));
-        //    appBarButton.Text = AppResources.AppBarButtonText;
-        //    ApplicationBar.Buttons.Add(appBarButton);
 
-        //    // Create a new menu item with the localized string from AppResources.
-        //    ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
-        //    ApplicationBar.MenuItems.Add(appBarMenuItem);
-        //}
+
+        void CarregarHoroscopo()
+        {
+
+            using (var db = new HoroscopoContext())
+            {
+                var resultado = (from Horoscopo in db.signos
+                                 select Horoscopo).ToList();
+
+                listaHoroscopo.ItemsSource = resultado;
+
+            }
+
+
+            /* List<Horoscopo> horoscopoLista = new List<Horoscopo>();
+             Horoscopo horoscopo = new Horoscopo
+             {
+
+                 Nome = "Áries"
+             };
+             Horoscopo horoscopo2 = new Horoscopo
+             {
+
+                 Nome = "Touro"
+             };
+             horoscopoLista.Add(horoscopo);
+             horoscopoLista.Add(horoscopo2);
+
+
+             listaHoroscopo.ItemsSource = horoscopoLista;*/
+        }
+
+
+        /*   void salvarHoroscopo()
+           {
+
+               Horoscopo horoscopo = new Horoscopo();
+               horoscopo.Nome = "Aries";
+
+               using(var db = new HoroscopoContext())
+               {
+                   db.signos.InsertOnSubmit(horoscopo);
+                   db.SubmitChanges();
+
+
+               }
+
+           }*/
+
+
+        private void listaHoroscopo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            NavigationService.Navigate(new Uri("/DescricaoHoroscopo.xaml", UriKind.Relative));
+
+        }
     }
 }
