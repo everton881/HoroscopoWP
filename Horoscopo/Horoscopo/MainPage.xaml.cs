@@ -18,9 +18,9 @@ namespace Horoscopo
         {
             ConsumindoJson consumir = new ConsumindoJson(listaHoroscopo);
             InitializeComponent();
-            // salvarHoroscopo();
+            salvarHoroscopo();
             CarregarHoroscopo();
-            consumir.conectar();
+            //consumir.conectar();
         }
 
 
@@ -39,46 +39,41 @@ namespace Horoscopo
             }
 
 
-            /* List<Horoscopo> horoscopoLista = new List<Horoscopo>();
-             Horoscopo horoscopo = new Horoscopo
-             {
-
-                 Nome = "Áries"
-             };
-             Horoscopo horoscopo2 = new Horoscopo
-             {
-
-                 Nome = "Touro"
-             };
-             horoscopoLista.Add(horoscopo);
-             horoscopoLista.Add(horoscopo2);
-
-
-             listaHoroscopo.ItemsSource = horoscopoLista;*/
+          
         }
 
 
-        /*   void salvarHoroscopo()
+           void salvarHoroscopo()
            {
 
                Horoscopo horoscopo = new Horoscopo();
-               horoscopo.Nome = "Aries";
+               horoscopo.Nome = "touro";
+            horoscopo.Data = "20/06/2015";
+            horoscopo.Mensagem = "BBBBBBBBBBBB";
+               
 
                using(var db = new HoroscopoContext())
                {
                    db.signos.InsertOnSubmit(horoscopo);
                    db.SubmitChanges();
+                CarregarHoroscopo();
 
+            }
 
-               }
-
-           }*/
+           }
 
 
         private void listaHoroscopo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            NavigationService.Navigate(new Uri("/DescricaoHoroscopo.xaml", UriKind.Relative));
+
+            ListBox lst = (ListBox)sender;
+            Horoscopo horoscopo = (Horoscopo)lst.SelectedItem;
+            txtNome.Text = horoscopo.Nome;
+            txtData.Text = horoscopo.Data;
+            txtMsg.Text = horoscopo.Mensagem;
+
+            PivotContato.SelectedIndex = 1;
 
         }
     }

@@ -17,8 +17,9 @@ namespace testandoBanco
         public MainPage()
         {
             InitializeComponent();
-            carregarAluno();
-            salvarAluno();
+           carregarAluno();
+
+            //salvarAluno();
 
 
 
@@ -35,23 +36,21 @@ namespace testandoBanco
                 var resultado = (from Aluno in db.alunos
                                  select Aluno).ToList();
 
-                txtNome.Text = resultado.FirstOrDefault().Nome;
-                txtLocal.Text = resultado.FirstOrDefault().Local;
-                txtTurma.Text = resultado.FirstOrDefault().Turma;
+                listaAluno.ItemsSource = resultado;
 
             }
 
          
         }
 
-        void salvarAluno()
+       /* void salvarAluno()
         {
 
             Aluno aluno = new Aluno
             {
 
-                Nome = "Everton",
-                Local = "Paulista",
+                Nome = "Seila",
+                Local = "paulista",
                 Turma = "A"
             };
 
@@ -60,10 +59,29 @@ namespace testandoBanco
             {
                 db.alunos.InsertOnSubmit(aluno);
                 db.SubmitChanges();
-
-
-
+                
             }
+
+            carregarAluno();
+
+        }*/
+
+        private void listaAluno_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ListBox lst;
+            lst = (ListBox)sender;
+           Aluno al = (Aluno)lst.SelectedItem;
+            string nome1 = al.Nome;
+            string local = al.Local;
+            string turma = al.Turma;
+            Descricaoteste desc = new Descricaoteste();
+            //desc.carregarAluno();
+            desc.nome = nome1;
+           
+           // MessageBox.Show(nome + local + turma);
+
+            
+         NavigationService.Navigate(new Uri("/Descricaoteste.xaml", UriKind.Relative));
 
         }
     }
