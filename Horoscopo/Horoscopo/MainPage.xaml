@@ -1,0 +1,51 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Horoscopo.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" ></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0" >
+            <Image Source="/Assets/Icon/icone.png"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="70"></Image>
+            <TextBlock Text="Horoscopo"  FontSize="40" Padding="10" ></TextBlock>
+        </StackPanel>
+
+        <Grid Grid.Row="1" Background="White">
+
+            <ListBox Name="listaHoroscopo" FontSize="30" Padding="20" Foreground="Black" SelectionChanged="listaHoroscopo_SelectionChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Assets/Icon/icone.png"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Height="70"></Image>
+                            <TextBlock Text="{Binding numero}"></TextBlock>
+                        </StackPanel>
+
+
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+            </ListBox>
+
+
+        </Grid>
+
+
+
+
+    </Grid>
+
+</phone:PhoneApplicationPage>
