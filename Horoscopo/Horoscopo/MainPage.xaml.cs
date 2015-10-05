@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Horoscopo.Resources;
+using System.Windows.Media.Imaging;
 
 namespace Horoscopo
 {
@@ -20,6 +21,7 @@ namespace Horoscopo
             InitializeComponent();
             salvarHoroscopo();
             CarregarHoroscopo();
+           carregaicone();
             //consumir.conectar();
         }
 
@@ -38,10 +40,29 @@ namespace Horoscopo
 
             }
 
-
+          
           
         }
 
+
+        void carregaicone()
+        {
+
+            List<Horoscopo> listaIcones = new List<Horoscopo>();
+            Horoscopo horo = new Horoscopo();
+            for (int i = 0; i <= 11; i++)
+            {
+                string icc = "/Assets/Icon/"+ i +".png";
+                Uri uri = new Uri(icc, UriKind.Relative);
+                BitmapImage icone = new BitmapImage(uri);
+                Image img = new Image();
+                img.Source = icone;
+                horo.Icone =icone.ToString();
+                listaIcones.Add(horo);
+                listaHoroscopo.ItemsSource = listaIcones;
+            }
+
+        }
 
            void salvarHoroscopo()
            {
@@ -73,6 +94,9 @@ namespace Horoscopo
             txtData.Text = horoscopo.Data;
             txtMsg.Text = horoscopo.Mensagem;
 
+            Uri uri = new Uri(horoscopo.Icone, UriKind.Relative);
+            BitmapImage ic = new BitmapImage(uri);
+            iconedetalhe.Source = ic;
             PivotContato.SelectedIndex = 1;
 
         }

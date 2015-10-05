@@ -4,6 +4,7 @@ using System.Data.Linq.Mapping;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace Horoscopo
 {
@@ -19,7 +20,8 @@ namespace Horoscopo
         public string Data { get; set; }
         [Column]
         public string Mensagem { get; set; }
-
+        
+        public string Icone { get; set; }
 
 
     }
