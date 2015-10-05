@@ -21,7 +21,7 @@ namespace Horoscopo
             InitializeComponent();
             salvarHoroscopo();
             CarregarHoroscopo();
-           carregaicone();
+           //carregaicone();
             //consumir.conectar();
         }
 
