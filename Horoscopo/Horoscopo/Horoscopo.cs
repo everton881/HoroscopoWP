@@ -20,7 +20,7 @@ namespace Horoscopo
         public string Data { get; set; }
         [Column]
         public string Mensagem { get; set; }
-        
+        [Column]
         public string Icone { get; set; }
 
 

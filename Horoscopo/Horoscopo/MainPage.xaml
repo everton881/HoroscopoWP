@@ -36,7 +36,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Image  Source="{Binding icone}"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Height="70"></Image>
+                            <Image  Source="{Binding Icone}"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Height="70"></Image>
                             <TextBlock Text="{Binding Nome}"></TextBlock>
                         </StackPanel>
 

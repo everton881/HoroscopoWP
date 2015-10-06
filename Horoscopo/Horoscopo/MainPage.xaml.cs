@@ -17,7 +17,7 @@ namespace Horoscopo
         // Constructor
         public MainPage()
         {
-            ConsumindoJson consumir = new ConsumindoJson(listaHoroscopo);
+           // ConsumindoJson consumir = new ConsumindoJson(listaHoroscopo);
             InitializeComponent();
             salvarHoroscopo();
             CarregarHoroscopo();
@@ -25,9 +25,7 @@ namespace Horoscopo
             //consumir.conectar();
         }
 
-
-
-
+        //Faz o select do Horoscopo e carrega na lista
         void CarregarHoroscopo()
         {
 
@@ -40,40 +38,18 @@ namespace Horoscopo
 
             }
 
-          
-          
-        }
-
-
-        void carregaicone()
-        {
-
-            List<Horoscopo> listaIcones = new List<Horoscopo>();
-            Horoscopo horo = new Horoscopo();
-            for (int i = 0; i <= 11; i++)
-            {
-                string icc = "/Assets/Icon/"+ i +".png";
-                Uri uri = new Uri(icc, UriKind.Relative);
-                BitmapImage icone = new BitmapImage(uri);
-                Image img = new Image();
-                img.Source = icone;
-                horo.Icone =icone.ToString();
-                listaIcones.Add(horo);
-                listaHoroscopo.ItemsSource = listaIcones;
-            }
-
         }
 
            void salvarHoroscopo()
            {
 
                Horoscopo horoscopo = new Horoscopo();
-               horoscopo.Nome = "touro";
+               horoscopo.Nome = "Cancer";
             horoscopo.Data = "20/06/2015";
-            horoscopo.Mensagem = "BBBBBBBBBBBB";
-               
+            horoscopo.Mensagem = "ASDFGGGG";
+            horoscopo.Icone =  "/Assets/Icon/" + 2 + ".png";
 
-               using(var db = new HoroscopoContext())
+               using (var db = new HoroscopoContext())
                {
                    db.signos.InsertOnSubmit(horoscopo);
                    db.SubmitChanges();
@@ -83,7 +59,7 @@ namespace Horoscopo
 
            }
 
-
+        //Seleciona o signo e joga a pagina 2 do Pivot
         private void listaHoroscopo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
