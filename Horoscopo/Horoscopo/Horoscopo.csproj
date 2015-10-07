@@ -95,12 +95,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="ConsumindoJson.cs" />
-    <Compile Include="descricaoHoroscopo.xaml.cs">
-      <DependentUpon>descricaoHoroscopo.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Horoscopo.cs" />
     <Compile Include="HoroscopoContext.cs" />
-    <Compile Include="HoroscopoJson.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -117,10 +113,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Page Include="descricaoHoroscopo.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

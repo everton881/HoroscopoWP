@@ -9,6 +9,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Horoscopo.Resources;
 using System.Windows.Media.Imaging;
+using System.Xml.Linq;
 
 namespace Horoscopo
 {
@@ -18,20 +19,16 @@ namespace Horoscopo
         // Constructor
         public MainPage()
         {
-
-            ConsumindoJson consumir = new ConsumindoJson();
-            consumir.conectar();
+            conectar();
             InitializeComponent();
-        //   salvarHoroscopo();
             CarregarHoroscopo();
-           //carregaicone();
-            //consumir.conectar();
+        
         }
 
         //Faz o select do Horoscopo e carrega na lista
-        void CarregarHoroscopo()
+      void CarregarHoroscopo()
         {
-            
+           
             using (var db = new HoroscopoContext())
             {
                 var resultado = (from Horoscopo in db.signos
@@ -43,7 +40,49 @@ namespace Horoscopo
 
         }
 
+        public void conectar()
+        {
+            WebClient webClient = new WebClient();
+            webClient.OpenReadCompleted += WebClient_OpenReadCompleted;
+            webClient.OpenReadAsync(new Uri("http://mftc.cf/everton/horoscopo.xml"));
+
+
+        }
+
+        private void WebClient_OpenReadCompleted(object sender, OpenReadCompletedEventArgs e)
+        {
+
+
+            XDocument doc = XDocument.Load(e.Result);
+
+
+            using (var db = new HoroscopoContext())
+            {
+
+                foreach (var item in doc.Descendants("signo"))
+                {
+
+                    Horoscopo horoscopo = new Horoscopo();
+                    horoscopo.Nome = (string)item.Element("nome");
+                    horoscopo.Data = (string)item.Element("periodo");
+                    horoscopo.Mensagem = (string)item.Element("msg");
+                    horoscopo.Icone = (string)item.Element("icone");
+                    //  horoscopo.Icone = "/Assets/Icon/" + i + ".png";
+
+                    db.signos.InsertOnSubmit(horoscopo);
+                    db.SubmitChanges();
+
+                }
+
+            }
+
+            CarregarHoroscopo();
+        }
+
      
+
+
+
 
         //Seleciona o signo e joga a pagina 2 do Pivot
         private void listaHoroscopo_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -58,8 +97,8 @@ namespace Horoscopo
 
        /*     Uri uri = new Uri(horoscopo.Icone, UriKind.Relative);
             BitmapImage ic = new BitmapImage(uri);
-            iconedetalhe.Source = ic;
-            PivotContato.SelectedIndex = 1;*/
+            iconedetalhe.Source = ic;*/
+            PivotHoroscopo.SelectedIndex = 1;
 
         }
 
