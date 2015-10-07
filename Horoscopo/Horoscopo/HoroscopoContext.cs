@@ -13,5 +13,6 @@ namespace Horoscopo
         public HoroscopoContext() : base("isostore:/banco.sdf") { }
         public Table<Horoscopo> signos;
 
+      
     }
 }

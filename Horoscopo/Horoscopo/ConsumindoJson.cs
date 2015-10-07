@@ -6,64 +6,53 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Xml.Linq;
 
 namespace Horoscopo
 {
     public class ConsumindoJson
     {
-        ListBox lista;
-
-        public ConsumindoJson(ListBox lista)
-        {
-
-            this.lista = lista;
-
-        }
-
+      
         public void conectar()
         {
             WebClient webClient = new WebClient();
             webClient.OpenReadCompleted += WebClient_OpenReadCompleted;
-            webClient.OpenReadAsync(new Uri("http://developers.agenciaideias.com.br/horoscopo/json"));
-           
-
+            webClient.OpenReadAsync(new Uri("http://mftc.cf/everton/horoscopo.xml"));
+       
 
         }
 
         private void WebClient_OpenReadCompleted(object sender, OpenReadCompletedEventArgs e)
         {
 
-            DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(HoroscopoJson));
-            HoroscopoJson consumir = (HoroscopoJson)json.ReadObject(e.Result);
-
-            for (int i = 0; i <= 11; i++) {
-
-
-                Horoscopo horoscopo = new Horoscopo
+            List<Horoscopo> listaHoroscopo = new List<Horoscopo>();
+            XDocument doc = XDocument.Load(e.Result);
+         
+            using (var db = new HoroscopoContext())
+            {
+               
+                foreach (var item in doc.Descendants("signo"))
                 {
-                    Nome = consumir.nome,
-                    Data = consumir.data,
-                    Mensagem = consumir.msg,
-                    Icone = "/Assets/Icon/" + i + ".png"
-
-            };
-
-                
-                using (var db = new HoroscopoContext())
-                {
+                    Horoscopo horoscopo = new Horoscopo();
+                    horoscopo.Nome = (string)item.Element("nome");
+                    horoscopo.Data = (string)item.Element("data");
+                    horoscopo.Mensagem = (string)item.Element("msg");
+                   
+                    // horoscopo.Icone = "/Assets/Icon/" + i + ".png";
+                  
                     db.signos.InsertOnSubmit(horoscopo);
                     db.SubmitChanges();
 
-                
                 }
-
+               
             }
-            }
-
-
-
-
+            
+            
         }
+
+    }
+
+        
 
 
 

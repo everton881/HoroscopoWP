@@ -18,9 +18,11 @@ namespace Horoscopo
         // Constructor
         public MainPage()
         {
-           // ConsumindoJson consumir = new ConsumindoJson(listaHoroscopo);
+
+            ConsumindoJson consumir = new ConsumindoJson();
+            consumir.conectar();
             InitializeComponent();
-            salvarHoroscopo();
+        //   salvarHoroscopo();
             CarregarHoroscopo();
            //carregaicone();
             //consumir.conectar();
@@ -29,7 +31,7 @@ namespace Horoscopo
         //Faz o select do Horoscopo e carrega na lista
         void CarregarHoroscopo()
         {
-
+            
             using (var db = new HoroscopoContext())
             {
                 var resultado = (from Horoscopo in db.signos
@@ -41,24 +43,7 @@ namespace Horoscopo
 
         }
 
-           void salvarHoroscopo()
-           {
-
-               Horoscopo horoscopo = new Horoscopo();
-               horoscopo.Nome = "Touro";
-            horoscopo.Data = "20/06/2015";
-            horoscopo.Mensagem = "ASDFGGGG";
-            horoscopo.Icone =  "/Assets/Icon/" + 2 + ".png";
-
-               using (var db = new HoroscopoContext())
-               {
-                   db.signos.InsertOnSubmit(horoscopo);
-                   db.SubmitChanges();
-                CarregarHoroscopo();
-
-            }
-
-           }
+     
 
         //Seleciona o signo e joga a pagina 2 do Pivot
         private void listaHoroscopo_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -71,10 +56,10 @@ namespace Horoscopo
             txtData.Text = horoscopo.Data;
             txtMsg.Text = horoscopo.Mensagem;
 
-            Uri uri = new Uri(horoscopo.Icone, UriKind.Relative);
+       /*     Uri uri = new Uri(horoscopo.Icone, UriKind.Relative);
             BitmapImage ic = new BitmapImage(uri);
             iconedetalhe.Source = ic;
-            PivotContato.SelectedIndex = 1;
+            PivotContato.SelectedIndex = 1;*/
 
         }
 
