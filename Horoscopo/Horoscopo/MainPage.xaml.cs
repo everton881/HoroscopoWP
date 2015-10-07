@@ -14,6 +14,7 @@ namespace Horoscopo
 {
     public partial class MainPage : PhoneApplicationPage
     {
+        bool isNewInstance = true;
         // Constructor
         public MainPage()
         {
@@ -44,7 +45,7 @@ namespace Horoscopo
            {
 
                Horoscopo horoscopo = new Horoscopo();
-               horoscopo.Nome = "Cancer";
+               horoscopo.Nome = "Touro";
             horoscopo.Data = "20/06/2015";
             horoscopo.Mensagem = "ASDFGGGG";
             horoscopo.Icone =  "/Assets/Icon/" + 2 + ".png";
@@ -76,5 +77,30 @@ namespace Horoscopo
             PivotContato.SelectedIndex = 1;
 
         }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            State["LISTA"] = listaHoroscopo.ItemsSource;
+            State["NOME"] = txtNome.Text;
+            State["DATA"] = txtData.Text;
+            State["MSG"] = txtMsg.Text;
+
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            if (isNewInstance)
+            {
+                if (State.ContainsKey("NOME"))
+                {
+
+                    txtNome.Text = State["NOME"].ToString();
+                }
+            }
+        }
+
+
     }
 }

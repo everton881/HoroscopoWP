@@ -36,31 +36,28 @@ namespace Horoscopo
             DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(HoroscopoJson));
             HoroscopoJson consumir = (HoroscopoJson)json.ReadObject(e.Result);
 
+            for (int i = 0; i <= 11; i++) {
 
-            
 
-
-               Horoscopo horoscopo = new Horoscopo
+                Horoscopo horoscopo = new Horoscopo
                 {
                     Nome = consumir.nome,
                     Data = consumir.data,
-                    Mensagem = consumir.msg
+                    Mensagem = consumir.msg,
+                    Icone = "/Assets/Icon/" + i + ".png"
 
-                };
+            };
+
                 
+                using (var db = new HoroscopoContext())
+                {
+                    db.signos.InsertOnSubmit(horoscopo);
+                    db.SubmitChanges();
 
-                Console.Write("jsonnnnn" + horoscopo);
-          
+                
+                }
 
-                  using (var db = new HoroscopoContext())
-                   {
-                       db.signos.InsertOnSubmit(horoscopo);
-                       db.SubmitChanges();
-
-
-                   }
-
-
+            }
             }
 
 

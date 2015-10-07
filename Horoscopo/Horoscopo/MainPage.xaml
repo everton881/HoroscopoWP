@@ -76,12 +76,12 @@
                        Width="60" Height="60" 
                        VerticalAlignment="Top"
                        Margin="10" ></Image>
-                                <TextBlock Name="txtNome" Text="{Binding Nome}" FontSize="40" Foreground="Black"></TextBlock>
+                                <TextBlock Name="txtNome" FontSize="40" Foreground="Black"></TextBlock>
 
                             </StackPanel>
                             <StackPanel >
-                                <TextBlock Name="txtData"  FontSize="20" Foreground="Black" Text="{Binding Data}" ></TextBlock>
-                                <TextBlock Name="txtMsg" FontSize="40" Foreground="Black" Text="{Binding Mensagem}"></TextBlock>
+                                <TextBlock Name="txtData"  FontSize="20" Foreground="Black"  ></TextBlock>
+                                <TextBlock Name="txtMsg" FontSize="40" Foreground="Black" ></TextBlock>
                             </StackPanel>
                         </StackPanel>
 
