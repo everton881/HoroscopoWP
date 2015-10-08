@@ -40,6 +40,20 @@ namespace Horoscopo
 
         }
 
+        private void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (((Pivot)sender).SelectedIndex)
+            {
+                case 0:
+                    ApplicationBar = ((ApplicationBar)Application.Current.Resources["AppBar1"]);
+                    break;
+
+                case 1:
+                    ApplicationBar = ((ApplicationBar)Application.Current.Resources["AppBar2"]);
+                    break;
+            }
+        }
+
         public void conectar()
         {
             WebClient webClient = new WebClient();
@@ -125,6 +139,7 @@ namespace Horoscopo
             }
         }
 
-
+        
     }
+
 }

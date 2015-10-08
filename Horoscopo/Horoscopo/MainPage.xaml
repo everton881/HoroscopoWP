@@ -12,8 +12,10 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
+
+
     <Grid>
-        <phone:Pivot  Name="PivotHoroscopo">
+       <phone:Pivot  Name="PivotHoroscopo">
 
             <phone:PivotItem Header="Horoscopo" Margin="-10">
 
@@ -35,9 +37,9 @@
             <ListBox Name="listaHoroscopo" ItemsSource="{Binding}" FontSize="30" Padding="20" Foreground="Black" SelectionChanged="listaHoroscopo_SelectionChanged" >
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <Image  Source="{Binding Icone}"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Height="70"></Image>
-                            <TextBlock Text="{Binding Nome}"></TextBlock>
+                        <StackPanel Orientation="Horizontal" >
+                            <Image  Source="{Binding Icone}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="70"></Image>
+                            <TextBlock Text="{Binding Nome}" VerticalAlignment="Center"></TextBlock>
                         </StackPanel>
 
 
