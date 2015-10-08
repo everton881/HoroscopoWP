@@ -58,22 +58,22 @@ namespace Horoscopo
 
             using (var db = new HoroscopoContext())
             {
-
+                
                 foreach (var item in doc.Descendants("signo"))
                 {
-
+                    
                     Horoscopo horoscopo = new Horoscopo();
                     horoscopo.Nome = (string)item.Element("nome");
                     horoscopo.Data = (string)item.Element("periodo");
                     horoscopo.Mensagem = (string)item.Element("msg");
                     horoscopo.Icone = (string)item.Element("icone");
-                    //  horoscopo.Icone = "/Assets/Icon/" + i + ".png";
+                 
 
                     db.signos.InsertOnSubmit(horoscopo);
                     db.SubmitChanges();
 
                 }
-
+                
             }
 
             CarregarHoroscopo();
@@ -95,9 +95,9 @@ namespace Horoscopo
             txtData.Text = horoscopo.Data;
             txtMsg.Text = horoscopo.Mensagem;
 
-       /*     Uri uri = new Uri(horoscopo.Icone, UriKind.Relative);
+            Uri uri = new Uri(horoscopo.Icone, UriKind.Relative);
             BitmapImage ic = new BitmapImage(uri);
-            iconedetalhe.Source = ic;*/
+            iconedetalhe.Source = ic;
             PivotHoroscopo.SelectedIndex = 1;
 
         }
