@@ -6,99 +6,83 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True" >
 
+    <phone:PhoneApplicationPage.Resources>
+        <shell:ApplicationBar x:Key="appBar" IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton Click="Create_Tile_Click" IconUri="/Assets/Icon/2.png" Text="pin to start"/>
+            <shell:ApplicationBarIconButton IconUri="/Icon/favorite-black.png" Text="favorite"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.Resources>
 
-    <Grid>
-       <phone:Pivot  Name="PivotHoroscopo">
-
-            <phone:PivotItem Header="Horoscopo" Margin="-10">
-
-
-                <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" ></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
+    <controls:Pivot Name="PivotHoroscopo" SelectionChanged="Pivot_SelectionChanged">
+        
+        <controls:PivotItem Header="Horoscopo" Margin="-10">
+          <Grid>
+         
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" ></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+              </Grid.RowDefinitions>
 
              
-                    <StackPanel Orientation="Horizontal" Grid.Row="0"  >
-            <Image Source="/Assets/Icon/icone.png"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="70"></Image>
-            <TextBlock Text="Escolha o Signo"  FontSize="40" Padding="10" ></TextBlock>
-        </StackPanel>
+              <StackPanel Orientation="Horizontal" Grid.Row="0"  >
+                <Image Source="/Assets/Icon/icone.png"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="70"></Image>
+                <TextBlock Text="Escolha o Signo"  FontSize="40" Padding="10" ></TextBlock>
+              </StackPanel>
 
-        <Grid Grid.Row="1" Background="White">
+              <Grid Grid.Row="1" Background="White">
+                <ListBox Name="listaHoroscopo" ItemsSource="{Binding}" FontSize="30" Padding="20" Foreground="Black" SelectionChanged="listaHoroscopo_SelectionChanged" >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" >
+                                <Image  Source="{Binding Icone}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="70"></Image>
+                                <TextBlock Text="{Binding Nome}" VerticalAlignment="Center"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+              </Grid>
 
-            <ListBox Name="listaHoroscopo" ItemsSource="{Binding}" FontSize="30" Padding="20" Foreground="Black" SelectionChanged="listaHoroscopo_SelectionChanged" >
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal" >
-                            <Image  Source="{Binding Icone}" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="70"></Image>
-                            <TextBlock Text="{Binding Nome}" VerticalAlignment="Center"></TextBlock>
+            </Grid>
+         </controls:PivotItem>
+
+         <controls:PivotItem Header="Horoscopo" Margin="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" ></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="0" >
+                    <Image Source="/Assets/Icon/icone.png"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="70"></Image>
+                    <TextBlock Text="Signo"  FontSize="40" Padding="10" ></TextBlock>
+                </StackPanel>
+
+                <Grid Grid.Row="1" Background="White">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Name="iconedetalhe" Source="{Binding Icone}"
+                                    Width="60" Height="60" 
+                                    VerticalAlignment="Top"
+                                    Margin="10"  />
+                            <TextBlock Name="txtNome" FontSize="40" Foreground="Black"></TextBlock>
                         </StackPanel>
-
-
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-
-            </ListBox>
-
-             
-            </Grid>
-
-                
-
-
-            </Grid>
-
-            </phone:PivotItem>
-
-            <phone:PivotItem Header="Horoscopo" Margin="2">
-
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" ></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                    </Grid.RowDefinitions>
-
-                    <StackPanel Orientation="Horizontal" Grid.Row="0" >
-                        <Image Source="/Assets/Icon/icone.png"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="70"></Image>
-                        <TextBlock Text="Signo"  FontSize="40" Padding="10" ></TextBlock>
-                    </StackPanel>
-
-                    <Grid Grid.Row="1" Background="White">
                         <StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Image Name="iconedetalhe" Source="{Binding Icone}"
-                       Width="60" Height="60" 
-                       VerticalAlignment="Top"
-                       Margin="10" ></Image>
-                                <TextBlock Name="txtNome" FontSize="40" Foreground="Black"></TextBlock>
-
-                            </StackPanel>
-                            <StackPanel >
-                                <TextBlock Name="txtData"  FontSize="20" Foreground="Black"  ></TextBlock>
-                                <TextBlock Name="txtMsg" FontSize="28" Foreground="Black" TextWrapping="Wrap" ></TextBlock>
-                            </StackPanel>
+                            <TextBlock Name="txtData"  FontSize="20" Foreground="Black"  ></TextBlock>
+                            <TextBlock Name="txtMsg" FontSize="28" Foreground="Black" TextWrapping="Wrap" ></TextBlock>
                         </StackPanel>
-
-                    </Grid>
-
-
-
-
+                    </StackPanel>
                 </Grid>
+           
+            </Grid>
+         </controls:PivotItem>
 
-
-
-
-            </phone:PivotItem>
-
-        </phone:Pivot>
-    </Grid>
+     </controls:Pivot>
 </phone:PhoneApplicationPage>

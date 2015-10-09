@@ -16,6 +16,8 @@ namespace Horoscopo
     public partial class MainPage : PhoneApplicationPage
     {
         bool isNewInstance = true;
+        private object textBoxBackgroundImage;
+
         // Constructor
         public MainPage()
         {
@@ -42,14 +44,16 @@ namespace Horoscopo
 
         private void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            this.ApplicationBar = this.Resources["appBar"] as ApplicationBar;
+
             switch (((Pivot)sender).SelectedIndex)
             {
                 case 0:
-                    ApplicationBar = ((ApplicationBar)Application.Current.Resources["AppBar1"]);
+                    this.ApplicationBar.IsVisible = false;
                     break;
 
                 case 1:
-                    ApplicationBar = ((ApplicationBar)Application.Current.Resources["AppBar2"]);
+                    this.ApplicationBar.IsVisible = true;
                     break;
             }
         }
@@ -139,7 +143,13 @@ namespace Horoscopo
             }
         }
 
-        
+        private void Create_Tile_Click(object sender, EventArgs e)
+        {
+            StandardTileData NewTileData = new StandardTileData
+            {
+            };
+        }
+
     }
 
 }
