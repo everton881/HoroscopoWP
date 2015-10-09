@@ -57,11 +57,10 @@ namespace Horoscopo
            
                using (var db = new HoroscopoContext())
             {
-               
 
- 
-
-            foreach (var item in doc.Descendants("signo"))
+                if (db.signos.Count() == 0)
+                {
+                    foreach (var item in doc.Descendants("signo"))
                 {
                     Horoscopo horoscopo = new Horoscopo();
 
@@ -70,22 +69,25 @@ namespace Horoscopo
                     horoscopo.Mensagem = (string)item.Element("msg");
                     horoscopo.Icone = (string)item.Element("icone");
 
+                   
                     db.signos.InsertOnSubmit(horoscopo);
                     db.SubmitChanges();
-                        
+                
+                }
+                }
+                else
+                {
 
-                    }
-               
+                    db.SubmitChanges();
+
+                }
+
             }
             
             CarregarHoroscopo();
         }
 
-     
-
-
-
-
+   
         //Seleciona o signo e joga a pagina 2 do Pivot
         private void listaHoroscopo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
