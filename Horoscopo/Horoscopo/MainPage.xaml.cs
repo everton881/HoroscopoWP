@@ -136,25 +136,48 @@ namespace Horoscopo
             base.OnNavigatedTo(e);
             if (isNewInstance)
             {
-                if (State.ContainsKey("NOME"))
+                if (this.NavigationContext.QueryString.ContainsKey("CustomerTile"))
                 {
+                    var name = this.NavigationContext.QueryString["CustomerTile"];
+                    select_horoscopo(name);
+                    this.PivotHoroscopo.SelectedIndex = 1;
 
-                    txtNome.Text = State["NOME"].ToString();
                 }
+                else
+                {
+                    if (State.ContainsKey("NOME"))
+                        txtNome.Text = State["NOME"].ToString();
+                }
+
             }
         }
 
         private void Create_Tile_Click(object sender, EventArgs e)
         {
-            StandardTileData NewTileData = new StandardTileData
-            {
-                BackTitle = txtNome.Text,
-                BackgroundImage = new Uri(horoscopo.Icone,UriKind.Relative)
-            };
+            ShellTile TileToFind = ShellTile.ActiveTiles.FirstOrDefault(x => x.NavigationUri.ToString().Contains("CustomerTile=" + txtNome.Text));
+            if (TileToFind == null) { 
+                StandardTileData NewTileData = new StandardTileData
+                {
+                    BackTitle = txtNome.Text,
+                    BackgroundImage = new Uri(horoscopo.Icone, UriKind.Relative)
+                };
 
-            ShellTile TileToFind = ShellTile.ActiveTiles.FirstOrDefault(x =>x.NavigationUri.ToString().Contains("CustomerTile="+txtNome.Text));
-            if(TileToFind == null)
-                ShellTile.Create(new Uri("/MainPage.xaml?PivotHoroscopo.SelectedItem=PivotTwo&CustomerTile=" + txtNome.Text, UriKind.Relative), NewTileData);
+                ShellTile.Create(new Uri("/MainPage.xaml?CustomerTile=" + txtNome.Text, UriKind.Relative), NewTileData);
+            }
+        }
+
+        private void select_horoscopo(string name)
+        {
+            foreach(Horoscopo o in listaHoroscopo.ItemsSource)
+            {
+                if (o.Nome.Equals(name))
+                {
+                    txtNome.Text = o.Nome;
+                    txtData.Text = o.Data;
+                    txtMsg.Text = o.Mensagem;
+                }
+
+            }
         }
 
     }
