@@ -12,9 +12,9 @@ namespace Horoscopo
     [Table]
     public class Horoscopo
     {
-        [Column(IsPrimaryKey = true, IsDbGenerated = true)]
+        [Column(IsPrimaryKey = true, IsDbGenerated = true )]
         public int Id { get; set; }
-        [Column]
+        [Column(IsPrimaryKey = true)]
         public string Nome { get; set; }
         [Column]
         public string Data { get; set; }

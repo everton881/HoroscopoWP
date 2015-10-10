@@ -72,6 +72,7 @@ namespace Horoscopo
                 if (!bd.DatabaseExists())
                 {
                     bd.CreateDatabase();
+
                 }
 
             }

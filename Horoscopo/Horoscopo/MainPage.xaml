@@ -12,6 +12,7 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
+<<<<<<< HEAD
     shell:SystemTray.IsVisible="True" >
 
     <phone:PhoneApplicationPage.Resources>
@@ -29,6 +30,20 @@
                 <RowDefinition Height="Auto" ></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
               </Grid.RowDefinitions>
+=======
+    shell:SystemTray.IsVisible="True">
+    <Grid>
+        <phone:Pivot  Name="PivotHoroscopo">
+
+            <phone:PivotItem Header="Horoscopo" Margin="-10" >
+
+
+                <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" ></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+>>>>>>> origin/master
 
              
               <StackPanel Orientation="Horizontal" Grid.Row="0"  >
@@ -67,11 +82,17 @@
                 <Grid Grid.Row="1" Background="White">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal">
+<<<<<<< HEAD
                             <Image Name="iconedetalhe" Source="{Binding Icone}"
                                     Width="60" Height="60" 
                                     VerticalAlignment="Top"
                                     Margin="10"  />
                             <TextBlock Name="txtNome" FontSize="40" Foreground="Black"></TextBlock>
+=======
+                            <Image  Source="{Binding Icone}"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Height="70"></Image>
+                            <TextBlock Text="{Binding Nome}"></TextBlock>
+                                       
+>>>>>>> origin/master
                         </StackPanel>
                         <StackPanel>
                             <TextBlock Name="txtData"  FontSize="20" Foreground="Black"  ></TextBlock>
