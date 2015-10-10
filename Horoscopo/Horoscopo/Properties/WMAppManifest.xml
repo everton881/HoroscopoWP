@@ -2,7 +2,11 @@
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2014/deployment" AppPlatformVersion="8.1">
   <DefaultLanguage xmlns="" code="en-US" />
   <App xmlns="" ProductID="{07ff2fef-ef26-481a-a11c-a8f6c8ddc5c9}" Title="Horoscopo" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Horoscopo author" Description="Sample description" SDOptOut="false" BackUpOptOut="false" Publisher="Horoscopo" PublisherID="{64954871-1b3a-4ab8-97bf-90f46337f7a8}">
+<<<<<<< HEAD
+    <IconPath IsRelative="true" IsResource="false">Assets\Icon\icone.png</IconPath>
+=======
     <IconPath IsRelative="true" IsResource="false">icone.png</IconPath>
+>>>>>>> origin/master
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
       <Capability Name="ID_CAP_MEDIALIB_AUDIO" />
@@ -26,6 +30,7 @@
           </BackBackgroundImageURI>
           <BackTitle>
           </BackTitle>
+<<<<<<< HEAD
           <LargeBackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\icone_tile.png</LargeBackgroundImageURI>
           <LargeBackContent />
           <LargeBackBackgroundImageURI IsRelative="true" IsResource="false">
@@ -33,6 +38,12 @@
           <DeviceLockImageURI>
           </DeviceLockImageURI>
           <HasLarge>True</HasLarge>
+=======
+          <DeviceLockImageURI>
+          </DeviceLockImageURI>
+          <HasLarge>
+          </HasLarge>
+>>>>>>> origin/master
         </TemplateFlip>
       </PrimaryToken>
     </Tokens>
