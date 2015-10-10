@@ -70,7 +70,7 @@ namespace Horoscopo
         private void WebClient_OpenReadCompleted(object sender, OpenReadCompletedEventArgs e)
         {
 
-
+           try{
             XDocument doc = XDocument.Load(e.Result);
             
            
@@ -104,6 +104,10 @@ namespace Horoscopo
             }
             
             CarregarHoroscopo();
+           }
+            catch{
+                  MessageBox.Show("Para utilizar a aplicação pela primeira vez você precisa esta conectado a internet!");
+            }
         }
 
    
