@@ -155,14 +155,25 @@ namespace Horoscopo
         private void Create_Tile_Click(object sender, EventArgs e)
         {
             ShellTile TileToFind = ShellTile.ActiveTiles.FirstOrDefault(x => x.NavigationUri.ToString().Contains("CustomerTile=" + txtNome.Text));
-            if (TileToFind == null) { 
-                StandardTileData NewTileData = new StandardTileData
+            if (!txtNome.Text.Equals(""))
+            {
+                if (TileToFind == null)
                 {
-                    BackTitle = txtNome.Text,
-                    BackgroundImage = new Uri(horoscopo.Icone, UriKind.Relative)
-                };
+                    StandardTileData NewTileData = new StandardTileData
+                    {
+                        BackTitle = txtNome.Text,
+                        Title = "Signo: "+horoscopo.Nome,
+                        BackgroundImage = new Uri(horoscopo.Icone, UriKind.Relative),
+                        BackContent = "Horoscopo"
+                        
+                    };
 
-                ShellTile.Create(new Uri("/MainPage.xaml?CustomerTile=" + txtNome.Text, UriKind.Relative), NewTileData);
+                    ShellTile.Create(new Uri("/MainPage.xaml?CustomerTile=" + txtNome.Text, UriKind.Relative), NewTileData);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No sign selected!");
             }
         }
 
