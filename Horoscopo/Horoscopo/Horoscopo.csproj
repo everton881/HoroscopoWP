@@ -147,9 +147,9 @@
     <Content Include="Assets\Icon\7.png" />
     <Content Include="Assets\Icon\8.png" />
     <Content Include="Assets\Icon\9.png" />
-    <Content Include="Assets\Icon\basic-icon-pin.png" />
-    <Content Include="Assets\Icon\favorite_black.png" />
+    <Content Include="Assets\Icon\favs.addto.png" />
     <Content Include="Assets\Icon\icone.png" />
+    <Content Include="Assets\Icon\pushpin.png" />
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\SquareTile150x150.png" />

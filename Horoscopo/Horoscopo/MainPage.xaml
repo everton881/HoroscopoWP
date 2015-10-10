@@ -16,14 +16,13 @@
 
     <phone:PhoneApplicationPage.Resources>
         <shell:ApplicationBar x:Key="appBar" IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton Click="Create_Tile_Click" IconUri="/Assets/Icon/2.png" Text="pin to start"/>
-            <shell:ApplicationBarIconButton IconUri="/Icon/favorite-black.png" Text="favorite"/>
+            <shell:ApplicationBarIconButton Click="Create_Tile_Click" IconUri="/Assets/Icon/pushpin.png" Text="pin to start"/>
+            <shell:ApplicationBarIconButton IconUri="/Assets/Icon/favs.addto.png" Text="favorite"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.Resources>
-
     <controls:Pivot Name="PivotHoroscopo" SelectionChanged="Pivot_SelectionChanged">
         
-        <controls:PivotItem Header="Horoscopo" Margin="-10">
+        <controls:PivotItem Name="PivotOne" Header="Horoscopo" Margin="-10">
           <Grid>
          
               <Grid.RowDefinitions>
@@ -53,7 +52,7 @@
             </Grid>
          </controls:PivotItem>
 
-         <controls:PivotItem Header="Horoscopo" Margin="2">
+         <controls:PivotItem Name="PivotTwo" Header="Horoscopo" Margin="2">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" ></RowDefinition>

@@ -17,6 +17,7 @@ namespace Horoscopo
     {
         bool isNewInstance = true;
         private object textBoxBackgroundImage;
+        Horoscopo horoscopo;
 
         // Constructor
         public MainPage()
@@ -24,7 +25,7 @@ namespace Horoscopo
             conectar();
             InitializeComponent();
             CarregarHoroscopo();
-        
+                    
         }
 
         //Faz o select do Horoscopo e carrega na lista
@@ -108,7 +109,7 @@ namespace Horoscopo
 
 
             ListBox lst = (ListBox)sender;
-            Horoscopo horoscopo = (Horoscopo)lst.SelectedItem;
+            horoscopo = (Horoscopo)lst.SelectedItem;
             txtNome.Text = horoscopo.Nome;
             txtData.Text = horoscopo.Data;
             txtMsg.Text = horoscopo.Mensagem;
@@ -147,7 +148,13 @@ namespace Horoscopo
         {
             StandardTileData NewTileData = new StandardTileData
             {
+                BackTitle = txtNome.Text,
+                BackgroundImage = new Uri(horoscopo.Icone,UriKind.Relative)
             };
+
+            ShellTile TileToFind = ShellTile.ActiveTiles.FirstOrDefault(x =>x.NavigationUri.ToString().Contains("CustomerTile="+txtNome.Text));
+            if(TileToFind == null)
+                ShellTile.Create(new Uri("/MainPage.xaml?PivotHoroscopo.SelectedItem=PivotTwo&CustomerTile=" + txtNome.Text, UriKind.Relative), NewTileData);
         }
 
     }
