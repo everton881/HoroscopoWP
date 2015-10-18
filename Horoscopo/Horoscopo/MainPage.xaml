@@ -17,7 +17,7 @@
     <phone:PhoneApplicationPage.Resources>
         <shell:ApplicationBar x:Key="appBar" IsVisible="True" IsMenuEnabled="True">
             <shell:ApplicationBarIconButton Click="Create_Tile_Click" IconUri="/Assets/Icon/pushpin.png" Text="pin to start"/>
-            <shell:ApplicationBarIconButton IconUri="/Assets/Icon/favs.addto.png" Text="favorite"/>
+           
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.Resources>
     <controls:Pivot Name="PivotHoroscopo" SelectionChanged="Pivot_SelectionChanged">

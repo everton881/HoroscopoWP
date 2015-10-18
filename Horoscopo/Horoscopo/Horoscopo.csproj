@@ -94,7 +94,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ConsumindoJson.cs" />
     <Compile Include="Horoscopo.cs" />
     <Compile Include="HoroscopoContext.cs" />
     <Compile Include="LocalizedStrings.cs" />
